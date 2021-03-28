@@ -9,9 +9,13 @@ func calculateParkingFee(hour, minute int) int {
 	minutes := hour*60 + minute
 	cost := 0
 	if minutes > 30 && minutes <= 180 {
-		div := float64(minutes) / 60
 		minutes -= 30
-		cost += (minutes / 60) * 10
+		div := float64(minutes) / 60
+		if minutes/60 > 0 {
+			cost += (minutes / 60) * 10
+		} else {
+			cost += 10
+		}
 		if div > 1 {
 			cost += 20
 		}
